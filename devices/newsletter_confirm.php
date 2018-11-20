@@ -2,7 +2,8 @@
 error_reporting(E_ALL ^ E_STRICT);
 error_reporting(0);
 
-if(isset($_GET['token']) AND !empty($_GET['token'])){
+if(isset($_GET['token']) AND !empty($_GET['token']))
+{
     $base = dirname(dirname(__FILE__));
     require($base.'/devices/config/db.php');
 
@@ -24,5 +25,4 @@ if(isset($_GET['token']) AND !empty($_GET['token'])){
        // echo "Error updating record: " . mysqli_error($mysqli);
     }
     mysqli_close($mysqli);
-
 }
