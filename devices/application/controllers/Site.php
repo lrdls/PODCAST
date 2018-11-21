@@ -7,9 +7,7 @@ class Site extends CI_Controller {
 
 private $data = NULL;
 
-//private $_magie; // Indique la puissance du magicien sur 100, sa capacité à produire de la magie.
 	public function getModel () {
-
 
 		$this->load->model('eps_model');
 
