@@ -4,10 +4,7 @@ ini_set('max_execution_time', 300); //300 seconds = 5 minutes
 $base = dirname(dirname(__FILE__));
 require($base.'/devices/config/db.php');
 $config = require($base.'/devices/config/config.php');
-//echo $base;
 $parent_folder = end(explode('/',$base)); 
-//echo $parent_folder;
-// exit;
 $expediteur = $config['expediteur'];
 $ip = $config['ip'];
 $name_site = $config['name_site'];
@@ -19,8 +16,6 @@ $delay_sendmail = $config['delay_sendmail'];
 
 // var newsletter
 $url_www = 'http://'.$ip.'/'.$parent_folder;
-//$url_www_spip = 'http://'.$ip;
-// $dateCheck = date("Y-m"); // news du mois courant
 $dateCheck = date('Y-m', strtotime('-1 month')); // news du mois precedent
 // $dateCheck = "2018-10"; // for debug
 $dateNow = $dateCheck;
@@ -74,9 +69,7 @@ if ($result = $mysqli->query($query)) {
 
 $mysqli->close();
 
-// functions
-
-
+///////////////////////////////////////////////////////////////////////////////////////////// functions
 function get_mailing_list($arr_mailsubscribers,$arr_authors,$mailsAuthors_to_exclude){
     $mailing_list = array();
     foreach($arr_mailsubscribers as $mailsubscriber) {
@@ -144,11 +137,11 @@ function headers($postmaster,$expediteur){
 function sendmail($to,$subject,$messageN,$headerN,$delay_sendmail){
     //sleep($delay_sendmail);
     if(mail($to,$subject,$messageN,$headerN)){
-        echo 'sendmail Votre message a bien été envoyé<br>';  // for debug
+        //echo 'sendmail Votre message a bien été envoyé<br>';  // for debug
         return TRUE;
     }
     else{
-        echo "sendmail Votre message n'a pas pu être envoyé";  // for debug
+        //echo "sendmail Votre message n'a pas pu être envoyé";  // for debug
         return FALSE;
     }
 }
@@ -167,8 +160,6 @@ function mailing_list($to,$subject,$messageN,$headerN,$delay_sendmail){
 
 function searchJeton($mail, $array) {
     foreach ($array as $key => $val) {
-/*         print_r($val);
-        print_r("<br>"); */
         if ($val['email'] === $mail) {
             return $val['jeton'];
         }
@@ -389,34 +380,6 @@ foreach($arr_articles as $article) {
 
 }
 
-/* $messageN .= '      <tr>';
-$messageN .= '        <td class="footer" bgcolor="#44525f">';
-//footer
-$messageN .= '          <table width="100%" border="0" cellspacing="0" cellpadding="0">';
-$messageN .= '          <tr>';
-$messageN .= '            <td align="center" class="footercopy">';
-$messageN .= '               <font color="black">&copy; '.$copyright1.' - '.$copyright2.' &nbsp; | &nbsp; 2017 - '.date("Y").'</font>';
-$messageN .= '              <br/><a href="'.$link_desabo.'" target="_blank" class="unsubscribe"><font color="#ffffff">Se désabonner</a>';
-$messageN .= '              <span class="hide">de la newsletter</span>';
-$messageN .= '            </td>';
-$messageN .= '          </tr>';
-$messageN .= '         </table>';
-
-$messageN .= '       </td>';
-$messageN .= '     </tr>';
-$messageN .= '     </table>';
-
-$messageN .= '     <!--[if (gte mso 9)|(IE)]>';
-$messageN .= ' </td>';
-$messageN .= ' </tr>';
-$messageN .= ' </table>';
-$messageN .= ' <![endif]-->';
-
-$messageN .= '   </td>';
-$messageN .= ' </tr>';
-$messageN .= ' </table>';
-
-$messageN .= '</body>'; */
 
 function add_footer($copyright1,$copyright2,$desabo,$display){
     $messageN .= '      <tr>';
