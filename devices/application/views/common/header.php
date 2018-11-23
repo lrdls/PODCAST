@@ -10,6 +10,18 @@
   $accroche = $slogan[0]['valeur'];
   $title = $title[0]['valeur'];
 
+  function searchForId($id, $array, $my_key) {
+    $ar_publie = array();
+    foreach ($array as $key => $val) {
+        if ($val[$my_key] === $id) {
+            if ($val['statut'] == "publie") {
+              array_push($ar_publie,$val['statut']);
+            }
+        }
+    }
+    return $ar_publie;
+  }
+
   $keywords_rubriques = [];
 
   foreach ($rubriques as $rubrique) {
@@ -66,6 +78,7 @@ $list_keyword_articles = implode(", ",$keywords_articles);
 <link  rel="stylesheet" href="<?=base_url('assets/css/bootstrap.4.0.0-beta.min.css');?>">
 
 <link  rel="stylesheet" href="<?=base_url('assets/css/header.min.css');?>">
+
 <!-- <link  rel="stylesheet" type="text/css" href="<?=base_url('assets/css/header.css');?>"> -->
 
 <!-- 
@@ -126,15 +139,20 @@ and media queries
         <ul class="navbar-nav mr-auto navbar-navMedia">
           <?php
           foreach($rubriques as $rubrique){
-            if(strtoupper($rubrique['titre'])!='ADMINISTRATIONINTERNE'){
-                $id=$rubrique['titre'];
-                $rubrique=$rubrique['titre'];
-                echo "<li class='nav-item'>";
-                  echo "<a class='nav-link waves-effect waves-light navbar-click' href='#' id='$id'>";
-                    echo $rubrique;
-                  echo "</a>";
-                echo "</li>";
-            }
+            $id_rubrique =$rubrique['id_rubrique'];
+            $my_key ='id_rubrique';
+            $ar_article_status = searchForId($id_rubrique, $articles, $my_key);
+            if (sizeof($ar_article_status)>0) {
+                if(strtoupper($rubrique['titre'])!='ADMINISTRATIONINTERNE'){
+                    $id=$rubrique['titre'];
+                    $rubrique=$rubrique['titre'];
+                    echo "<li class='nav-item'>";
+                      echo "<a class='nav-link waves-effect waves-light navbar-click' href='#' id='$id'>";
+                        echo $rubrique;
+                      echo "</a>";
+                    echo "</li>";
+                }
+              }
           }
           ?>
         </ul>
