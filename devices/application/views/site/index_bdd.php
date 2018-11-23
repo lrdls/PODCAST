@@ -50,12 +50,12 @@ foreach ($documents as $arr) {
 
 
 
-foreach ($liens as $arr2) {
+		foreach ($liens as $arr2) {
 
-    if($arr['id_document']==$arr2['id_document']){
-    		$array_spip_documents_liens[$arr2['id_objet']]=$arr['fichier'];
-    }
-}
+			if($arr['id_document']==$arr2['id_document']){
+					$array_spip_documents_liens[$arr2['id_objet']]=$arr['fichier'];
+			}
+		}
 
 
     }
