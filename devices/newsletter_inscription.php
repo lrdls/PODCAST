@@ -4,13 +4,9 @@ error_reporting(E_ALL ^ E_STRICT);
 error_reporting(0);
 $base = dirname(dirname(__FILE__));
 require($base.'/devices/config/db.php');
-$name_site = $config['name_site'];
 $parent_folder = basename(dirname(__FILE__, 2));
-
 $config = require($base.'/devices/config/config.php');
-// print_r($config);
-// print_r($parent_folder);
-//exit;
+$name_site = $config['name_site'];
 
 
 function reponseN($name_site){
@@ -206,6 +202,7 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
     $headerN = 'MIME-Version: 1.0'."\r\n";
     $headerN .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
     $headerN .= 'From: "'.$postmaster.'"<'.$expediteur.'>'."\r\n"; // Expediteur
+    // $headerN = "From: \".$postmaster.\"<.$expediteur.>"."\r\n";
     $subject = "Confirmation Abonnement Newsletter ".$name_site;
 
     $messageN = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
