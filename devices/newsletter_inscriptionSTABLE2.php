@@ -7,86 +7,16 @@ require($base.'/devices/config/db.php');
 $name_site = $config['name_site'];
 $parent_folder = basename(dirname(__FILE__, 2));
 
-$config = require($base.'/devices/config/config.php');
-// print_r($config);
+//$config = require($base.'/devices/config/config.php');
+//print_r($config);
 // print_r($parent_folder);
 //exit;
 
 
-function reponseN($name_site){
-    $reponseN = '<head>';
-    $reponseN .= '<link rel="stylesheet" type="text/css" media="all" href="css/newsletter_inscription_style.css">';
-    $reponseN .= '<link rel="stylesheet" type="text/css" media="all" href="css/newsletter_inscription_responsive.css">';
 
 
-    $reponseN .= '<style type="text/css">';
 
-        $reponseN .= '.roundedImage{';
-            $reponseN .= 'overflow:hidden;';
-            $reponseN .= '-webkit-border-radius:50px;';
-            $reponseN .= '-moz-border-radius:50px;';
-            $reponseN .= 'border-radius:50px;';
-            $reponseN .= 'width:90px;';
-            $reponseN .= 'height:90px;';
-            $reponseN .= 'background-repeat: no-repeat;';
-            $reponseN .= 'background-attachment: fixed;';
-            $reponseN .= 'background:url(assets/images/icone.jpg);';
-            $reponseN .= 'display: inline-block;';
-        $reponseN .='}';
-
-        $reponseN .= '.wrapper {';
-            $reponseN .= 'text-align: center;';
-        $reponseN .= '}';
-
-
-    $reponseN .= '</style>';
-
-
-    $reponseN .= '</head>';
-
-
-/*     $reponseN .= "<body style='background-color:grey;'>";
-    $reponseN .= "<section id='container'>";
-    $reponseN .= "<h2><font color=grey>".strtoupper($name_site)." vous remercie</font></h2>";
-    $reponseN .= "<h3><font color=black>Votre demande a bien éte prise en compte.</font></h3>";
-    $reponseN .= "<h3><font color=black>Vous allez recevoir un email de confirmation.</font></h3>";
-    $reponseN .= "<h3><font color=black>Vous pouvez fermez cette page.</font></h3>";
-    $reponseN .= "</section>";
-    $reponseN .= "<body>";
-
-
- */
-
-
-    $reponseN .= '<body style="background-color:grey;overflow-y: hidden;">';
-	$reponseN .= '<section id="container" style="padding-bottom:70px;">';
-    $reponseN .= '<div class="wrapper">';
-    $reponseN .= '<div class="roundedImage" style="background:url(../IMG/icone.jpg) no-repeat -40px -40px;">';
-    $reponseN .= '&nbsp;';
-    $reponseN .= '</div>';
-    $reponseN .= '</div>';
-    $reponseN .= '<h2 style="background-color:#E1E1E1;" align="center">Newsletter mensuelle Podcasts '.strtoupper($name_site).'</h2>';
-
-    $reponseN .= '<div id="wrappingX" class="clearfixX" align="center">';
-    // $reponseN .= '<section id="aligned">';
-    $reponseN .= '<h2><font color=grey>'.strtoupper($name_site).' vous remercie</font></h2>';
-    $reponseN .= '<h3><font color=black>Votre demande a bien éte prise en compte.</font></h3>';
-    $reponseN .= '<h3><font color=black>Vous allez recevoir un email de confirmation.</font></h3>';
-    $reponseN .= '<h3><font color=black>Vous pouvez fermez cette page.</font></h3>';
-    $reponseN .= '</section>';
-    $reponseN .= '</div>';
-
-    $reponseN .= '</body>';
-
-    return $reponseN;
- 
-}
-
-$reponseN = reponseN($name_site);
-/* print_r($reponseN);
-exit; */
-
-function messageDES($config,$parent_folder,$jeton){
+function message($config,$parent_folder,$jeton){
     $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php?token='.$jeton;
     $messageN = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -105,7 +35,7 @@ function messageDES($config,$parent_folder,$jeton){
     return $messageN;
 }
 
-function confirm_by_mail($config,$email,$url_confirm,$messageN,$headerN){
+function confirm_by_mail($email,$url_confirm,$messageN,$headerN){
 //function confirm_by_mail($email,$subject,$messageN,$headerN){
 
     //$messageN = message($config,$parent_folder);
@@ -120,13 +50,12 @@ function confirm_by_mail($config,$email,$url_confirm,$messageN,$headerN){
         $passage_ligne = "\n";
     }
     //=====Déclaration des messages au format texte et au format HTML.
-    //$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
+    $message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
     $message_html = "<html><head></head><body><div>";
     $message_html .= "<p>Cliquez sur ce lien pour confirmer votre abonnement</p>";
     // $message_html .= "<a href ='http://" . $url_confirm . "'>[  Newsletter Et puis soudain ]</a>";
     //$message_html .= "[  " . $url_confirm . " ]";
-    // $message_html .= "<p>http://51.38.186.165".$url_confirm ;
-    $message_html .= "<p>http://".$url_confirm ;
+    $message_html .= "<p>http://51.38.186.165".$url_confirm ;
     $message_html .= "</p></div></body></html>";
 
 
@@ -224,12 +153,18 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
     // echo $messageN;
     $messageN = stripslashes($messageN);
 
-
-
-    $reponseN = reponseN($name_site);
-    print_r($reponseN);
-
-
+    $reponseN = "<head>";
+    $reponseN .= '<link rel="stylesheet" type="text/css" media="all" href="css/newsletter_inscription_style.css">';
+    $reponseN .= '<link rel="stylesheet" type="text/css" media="all" href="css/newsletter_inscription_responsive.css">';
+    $reponseN .= "</head>";
+    $reponseN .= "<body style='background-color:grey;'>";
+    $reponseN .= "<section id='container'>";
+    $reponseN .= "<h2><font color=grey>".strtoupper($name_site)." vous remercie</font></h2>";
+    $reponseN .= "<h3><font color=black>Votre demande a bien éte prise en compte.</font></h3>";
+    $reponseN .= "<h3><font color=black>Vous allez recevoir un email de confirmation.</font></h3>";
+    $reponseN .= "<h3><font color=black>Vous pouvez fermez cette page.</font></h3>";
+    $reponseN .= "</section>";
+    $reponseN .= "<body>";
 
     if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $check_valid = 'ok';
@@ -253,23 +188,24 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
         VALUES ('$email', '$statut', '$jeton', '$lang', '$date')";
 
 $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php?token='.$jeton;
-
+confirm_by_mail($email,$url_confirm,$messageN,$headerN);
 
         if ($mysqli->query($sql) === TRUE) {
             
-            // confirm_by_mail($config,$email,$url_confirm,$messageN,$headerN); -> OK
 
+            //confirm_by_mail($email,$url_confirm,$messageN);
+            //confirm_by_mail($email,$url_confirm,$messageN,$headerN);
+            //confirm_by_mail($email,$url_confirm,$messageN)
 
 
             if(mail($email,$subject,$messageN,$headerN)){
-                //echo "";
-                //echo 'Votre demande a bien été envoyé<br>';  // for debug
-                return TRUE;
+                // echo 'Votre demande a bien été envoyé<br>';  // for debug
+                //return TRUE;
             }
             else{
-                //echo "";  // for debug
-                echo "Votre demande n'a pas pu aboutir (error1)";  // for debug
-                return FALSE;
+                echo "";  // for debug
+                //echo "Votre demande n'a pas pu aboutir";  // for debug
+                // return FALSE;
             }
 
             echo $reponseN;
@@ -277,7 +213,7 @@ $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php
 
         } else {
             echo "";  // for debug
-            echo "Votre demande n'a pas pu aboutir (error2)";  // for debug
+            //echo "Votre demande n'a pas pu aboutir";  // for debug
             // echo "Error: " . $sql . "<br>" . $mysqli->error;
         }
         $mysqli->close();
@@ -310,16 +246,19 @@ $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php
                     $messageN = stripslashes($messageN);
 
                     //confirm_by_mail($email,$url_confirm,$messageN);
-
+                    //confirm_by_mail($email,$url_confirm,$messageN);
+//confirm_by_mail($email,$url_confirm,$messageN,$headerN);
+/*                     confirm_by_mail($email,$subject,$messageN,$headerN);
+                    confirm_by_mail($email,$url_confirm,$messageN); */
 
                     if(mail($email,$subject,$messageN,$headerN)){
-                        //echo 'Votre demande a bien été envoyé<br>';  // for debug
-                        return TRUE;
+                        // echo 'Votre demande a bien été envoyé<br>';  // for debug
+                        //return TRUE;
                     }
                     else{
-                        echo "Votre demande n'a pas pu aboutir (error3)";  // for debug
-                        //echo "";  // for debug
-                        return FALSE;
+                        //echo "Votre demande n'a pas pu aboutir";  // for debug
+                        echo "";  // for debug
+                        // return FALSE;
                     }
         
                     echo $reponseN;
@@ -328,7 +267,7 @@ $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php
                 }
 
             } else {
-                echo "Votre demande n'a pas pu aboutir (error4)";  // for debug
+                echo "Votre demande n'a pas pu aboutir";  // for debug
                 echo "0 results";
             }
             $mysqli->close();
@@ -413,7 +352,7 @@ $url_confirm = $config['ip'].'/'.$parent_folder.'/devices/newsletter_confirm.php
                 &nbsp;
             </div>
         </div>
-		<h2 style="background-color:#E1E1E1;">Newsletter mensuelle Podcasts <?php echo strtoupper($name_site); ?></h2>
+		<h2 style="background-color:#E1E1E1;">Newsletter mensuelle <br/>des Podcasts <?php echo strtoupper($name_site); ?></h2>
 		<form name="hongkiat" id="hongkiat-form"  method="post" action="newsletter_inscription.php">
 		<div id="wrapping" class="clearfix">
 			<section id="aligned">

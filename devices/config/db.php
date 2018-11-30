@@ -17,8 +17,11 @@ $database = $db['default']['database'];
 /* echo $hostname;
 exit; */
 
-/* 
-$config = require($base.'/config/config.php');
+ 
+// $config = require($baseDb.'/devices/config/config.php');
+//$config = require('config.php');
+
+/*
 $hostname = $config['dbLocation'];
 $username = $config['dbUser'];
 $password = $config['dbPassword'];
