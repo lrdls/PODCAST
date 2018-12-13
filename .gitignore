@@ -59,6 +59,7 @@ devices/application/config/database*
 language*
 logs*
 images*
+*IMG*
 devices/application/hooks/*
 devices/application/core/*
 devices/application/language/*
