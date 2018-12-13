@@ -55,7 +55,10 @@ squelettes*
 #-------------------------
 devices-*
 devices/application/cache*
-devices/application/config/*
+devices/application/config/database*
+language*
+logs*
+images*
 devices/application/hooks/*
 devices/application/core/*
 devices/application/language/*
@@ -63,10 +66,18 @@ devices/application/views/errors*
 devices/application/libraries/*
 devices/application/logs/*
 devices/application/third_party/*
-devices/assets/*
+# devices/assets/*
 devices/system/*
 devices/tests/*
 index.html
+
+devices/config/PHP*
+*lang*
+
+bootstrap*
+jquery*
+*OR*
+*STABLE*
 
 IMG/*
 

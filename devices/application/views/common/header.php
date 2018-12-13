@@ -98,8 +98,20 @@ and media queries
 <body>
   <div class="bandeau">
 
+    <div class="div--icon-site" style="position:absolute;z-index:101;">
+        <table width="100%" border="0">
+        <tbody>
+        <tr>
+        <td class="td--icon-site">
+          <img class="icon-site" src='<?= $icon_site ?>' alt='icone'>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    
     <form id="formX" class="search-form">
-      <input id="filter" type="search" class="sb" name="q" autocomplete="off" placeholder="search" />
+      <input id="filter" type="search" class="sb" name="q" autocomplete="off" placeholder="Live search" />
       <button id="sbtn" type="submit" class="sbtn icon-search-clear"><font face="arial"><b>X</b></font></button>
     </form>  
 
