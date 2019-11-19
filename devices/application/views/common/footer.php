@@ -1,10 +1,11 @@
         <footer class="footer">
         <p>
-            &copy; LRDS 2017-<?php echo date('Y');?> | <a href="../spip.php">FullWebSite</a> CodeIgniter3 - Spip3.2.1 | 
-            <a href="mailto:vincseize@gmail.com">Contact</a> | 
+            <!-- &copy; LRDS 2017-<?php echo date('Y');?> | <a href="../spip.php">FullWebSite</a> CodeIgniter3 - Spip3.2.1 |  -->
+            &copy; LRDS 2017-<?php echo date('Y');?> | CodeIgniter3 - Spip3.2.1 | 
+            <a href="mailto:etpuissoudain@gmail.com">Contact</a> | 
             <a href="newsletter_inscription.php" target='_blank'">Newsletter</a> | 
             <a href="https://twitter.com/etpuissoudain" target="='_blank">Twitter</a>
-           <p/>
+        </p>
         </footer>
     </div>
 

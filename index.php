@@ -64,6 +64,9 @@ $list_keyword_articles = implode(", ",$keywords_articles);
 
 <?php
 
+header('Location: devices/index.php');
+exit;
+
 	# appel SPIP
 	//include('spip.php');
 	

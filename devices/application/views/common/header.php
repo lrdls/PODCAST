@@ -47,7 +47,7 @@ $list_keyword_articles = implode(", ",$keywords_articles);
 
 <meta charset="UTF -8">
 <meta http-equiv="X-UA -Compatible" content="IE=edge">
-<meta name="viewport" content="width=device -width , initial -scale =1">
+<meta name="viewport" content="width=device-width , initial-scale=1">
 <meta name="Content-Type" content="UTF-8">
 <meta name="Content-Language" content="fr">
 <meta name="Copyright" content="LRDS">
@@ -143,7 +143,7 @@ and media queries
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark navbarMedia">
-    <a class="navbar-brand navbar-brandMedia" href="#" onclick="location.reload();">HOME</a>
+    <a class="navbar-brand navbar-brandMedia" href="#" onclick="location.reload();">TOUT</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

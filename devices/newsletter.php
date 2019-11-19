@@ -304,7 +304,8 @@ $messageN .= '      </tr>';
 foreach($arr_articles as $article) {
     $id_article = $article['id_article'];
     // $url_podcast = $url_www.'/spip.php?page=article&id_article='.$id_article;
-    $url_podcast = $url_www.'/devices/index.php?page=article&id_article='.$id_article;
+    // $url_podcast = $url_www.'/devices/index.php?page=article&id_article='.$id_article;
+    $url_podcast = 'http://etpuissoudain.com/devices/index.php?page=article&id_article='.$id_article;
     $id_secteur = $article['id_secteur'];
     $categorie = '';
 
@@ -391,8 +392,15 @@ function add_footer($copyright1,$copyright2,$desabo,$display){
     $messageN .= '              <font color="black">&copy; '.$copyright1.' - '.$copyright2.' &nbsp; | &nbsp; 2017 - '.date("Y").'</font>';
     $messageN .= '        <div style="'.$display.'">';
     $messageN .= '              <span><font color="#8da9c4"><a href="'.$desabo.'" target="_blank" class="unsubscribe">';
-    $messageN .= '              <font color="#8da9c4">Se désabonner</font></a></span>';
+    $messageN .= '                  <font color="#8da9c4">Se désabonner</font></a>';
+    $messageN .= '              </span>';
     $messageN .= '              <span class="hide"><font color="#8da9c4">de la newsletter</font></span>';
+
+    $messageN .= '              <span><font color="#8da9c4"><a href="http://etpuissoudain.com" target="_blank" class="unsubscribe">';
+    $messageN .= '                  <font color="#8da9c4">Site</font></a>';
+    $messageN .= '              </span>';
+
+
     $messageN .= '        </div>';
     $messageN .= '            </td>';
     $messageN .= '          </tr>';
